@@ -10,11 +10,10 @@ function App() {
   return (
     <Router>
       <header className="header">
-      <h2>
-          Игра Крестики-Нолики
-      </h2>
+        <h2>
+            Игра Крестики-Нолики
+        </h2>
       </header>
-
       <div style={{minHeight: "calc(100vh - 120px)"}}>
         <Routes>    
           <Route exact path="/steps"  element={<Steps/>} />
@@ -22,7 +21,6 @@ function App() {
           <Route exact path="/"  element={<Main/>} />
         </Routes>
       </div>
-
     <footer>
       <div className="footer">
         {'© '}              
