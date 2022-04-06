@@ -6,10 +6,12 @@
   color: #33699E;
 }
 
-.main-link {
-  text-decoration: none;
-  display: block;
-  color: gray;    
+.link {
+  background-color: #fff;    
+  cursor: pointer;
+  border: 1px solid #9DC9F3;
+  border-radius: 3px;
+  outline: none;
 }
 
 /* Для формы*/
@@ -70,6 +72,15 @@
   font-size: 1.1rem;  
 }
 
+.button2 {
+  height: 30px;
+  width: 160px;
+  margin: 5px 0;
+  cursor: pointer;  
+  border-radius: 4px;
+  font-size: 1.1rem;  
+}
+
 [disabled] {
   opacity: .6;
   cursor: default;
@@ -79,7 +90,7 @@
   width: 100px;
   cursor: pointer;
   background-color: #9DC9F3;
-  border: 2px solid #4f6a83;
+  border: 3px solid #4f6a83;
   border-radius: 2px;  
 }
 [disabled] {
@@ -100,5 +111,15 @@
 }
 .main {
   width: 70%;
+}
+
+hr {
+  background-color: #4f6a83;
+  margin-top: 20px;
+  height: 3px;
+}
+
+.left {
+  text-align: left;
 }
 

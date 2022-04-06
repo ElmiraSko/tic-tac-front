@@ -15,9 +15,7 @@ export default function FileData() {
     const [hiddenResultStr, setHiddenResultStr] = useState(true);
     const [isRead, setIsRead] = useState(false);
 
-    let getFiledUrl = "http://localhost:8080/gameplay/getFile";
-    
-
+    let getFiledUrl = "http://localhost:8080/gameplay/get-file";
 
     const reqOptions = {
         method: 'GET'
@@ -34,7 +32,7 @@ export default function FileData() {
             .then(async response => {
                 console.log(response)
                 const  data = await response.json()
-                if (response.status != 200) {
+                if (response.status !== 200) {
                     console.log("Ошибка!!!")
                 } else {
                 console.log(data);                

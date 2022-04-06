@@ -8,7 +8,7 @@ export default function Steps() {
             [0, 0, 0], [0, 0, 0], [0, 0, 0]
         ]
     );
-    // массив из двух текущих играков
+    // массив из двух текущих игроков
     const [currentPlayers, setCurrentPlayers] = useState('');
     // счетчик ходов
     const [count, setCount] = useState(1);
@@ -22,11 +22,11 @@ export default function Steps() {
     // результат игры
     const [result, setResult] = useState('');
     // после завершения игры отключить ячейки
-    const [cellDisabled, setCellDisabled] = useState(false);    
-
+    const [cellDisabled, setCellDisabled] = useState(false);  
 
     let getGameFieldUrl = "http://localhost:8080/gameplay/get";
-    let getNewGameFieldUrl = "http://localhost:8080/gameplay/getNewGame";
+    let getNewGameFieldUrl = "http://localhost:8080/gameplay/get-new-game";
+    let stepsUrl = "http://localhost:8080/gameplay/steps";  
 
     const reqOptions = {
         method: 'GET'
@@ -42,22 +42,21 @@ export default function Steps() {
         fetch(url, reqOptions)
             .then(async response => {
                 console.log(response)
-                console.log(response.status)
                 const  data = await response.json()
                 if (response.status === 400) {
                     console.log("Ошибка, status - 400!")
                 } else {                    
                     setField(data.field);
                     setCurrentPlayers(data.currentPlayers);
-                    setLastWentPlayer(data.lastWentPlayer);
-                    const res = data.result;                    
-                    setResult(res.result);
-                    if(res.result.length > 0) {
+                    const resultInfo = data.result;                    
+                    setResult(resultInfo.result);
+                    setLastWentPlayer(resultInfo.lastWentPlayer);
+                    if(resultInfo.result.length > 0) {
                         setCellDisabled(true);
                     }         
                     console.log(data);
-                    console.log(res.result);
-                    console.log(data.lastWentPlayer.name);
+                    console.log(resultInfo.result);
+                    console.log(resultInfo.lastWentPlayer.name);
 
                 }
             })
@@ -104,7 +103,7 @@ export default function Steps() {
                 coords: val
                 })
         };
-        fetch('http://localhost:8080/gameplay/steps', requestOptions)
+        fetch(stepsUrl, requestOptions)
             .then(async response => {
                 console.log(response)
                 const  data = await response.json();
@@ -147,6 +146,17 @@ export default function Steps() {
         window.location.href='/file-data';
     }
 
+    // К списку игроков
+    function allPlayers() {    
+        window.location.href='/players-data';
+    }
+
+    // К списку игр
+    function allPlays() {    
+        window.location.href='/games-data';
+    }
+    
+
     return (
         <div className="flex">
             <div className="main flex">
@@ -184,6 +194,17 @@ export default function Steps() {
                                 disabled = {!cellDisabled}
                         > Проиграть эту игру
                         </button>
+                        <div className="flex">
+                            <button className="button2 blue"
+                                    onClick={() => allPlayers()}                                        
+                            > Список игроков
+                            </button>
+                            <button className="button2 blue"
+                                    onClick={() => allPlays()}                                        
+                            > Список игр
+                            </button>
+                        </div>
+                        
                     </div>    
                 </div>
 
@@ -232,7 +253,7 @@ export default function Steps() {
                     </div>
                 </div>
 
-            </div>
-        </div>
+            </div>            
+        </div> 
     );
 }

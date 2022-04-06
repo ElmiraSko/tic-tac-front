@@ -4,6 +4,8 @@ import { BrowserRouter as Router,
   import Main from './components/Main';
 import Steps from './components/Steps';
 import FileData from './components/FileData';
+import AllPlayers from './components/AllPlayers';
+import AllGames from './components/AllGames';
   
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
       <div style={{minHeight: "calc(100vh - 120px)"}}>
         <Routes>    
           <Route exact path="/steps"  element={<Steps/>} />
+          <Route exact path="/players-data"  element={<AllPlayers/>} />
+          <Route exact path="/games-data"  element={<AllGames/>} />
           <Route exact path="/file-data"  element={<FileData/>} />
           <Route exact path="/"  element={<Main/>} />
         </Routes>
